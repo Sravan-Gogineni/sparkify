@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Artists by Week</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .week {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 15px;
+        }
+        .artist {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Top 10 Artists by Week</h1>
+    <div id="results">
+        {% for week in artist %}
+            <div class="week">
+                <h2>Year: {{ week.year }}, Month: {{ week.month }}, Week: {{ week.weekOfMonth }}</h2>
+                <ul>
+                    {% for artist in week.topArtists %}
+                        <li class="artist">Artist: {{ artist.artist }}, Count: {{ artist.count }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
