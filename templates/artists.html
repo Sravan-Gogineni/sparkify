@@ -3,37 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 10 Artists by Week</title>
+    <title>Top Artists by Week</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 300px; /* Increased max-width for better layout */
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         h1 {
             text-align: center;
-        }
-        .week {
             margin-bottom: 20px;
-            border: 1px solid #ccc;
-            padding: 15px;
+            font-size: 16px; /* Adjusted font size */
         }
-        .artist {
-            margin-left: 20px;
+        p {
+            margin-top: 20px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            font-size: 14px; /* Adjusted font size */
+        }
+        .list-group {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .list-group-item {
+            padding: 5px; /* Reduced padding for list items */
+            margin: 3px 0; /* Reduced margin for list items */
+            background-color: #e9ecef;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            font-size: 12px; /* Adjusted font size */
+        }
+        .list-group-item:hover {
+            background-color: #d1e7dd;
+        }
+        strong {
+            color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h1>Top 10 Artists by Week</h1>
-    <div id="results">
-        {% for week in artist %}
-            <div class="week">
-                <h2>Year: {{ week.year }}, Month: {{ week.month }}, Week: {{ week.weekOfMonth }}</h2>
-                <ul>
-                    {% for artist in week.topArtists %}
-                        <li class="artist">Artist: {{ artist.artist }}, Count: {{ artist.count }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+    <div class="container">
+        <h1>Top 10 Artists by Week</h1>
+        {% for week, artists in artists.items() %}
+            <p>{{ week }}</p>
+            <ul class="list-group">
+                {% for artist_info in artists[0] %}
+                    <li class="list-group-item">
+                        <strong>{{ artist_info.artist }}</strong>: {{ artist_info.count }} plays
+                    </li>
+                {% endfor %}
+            </ul>
         {% endfor %}
     </div>
 </body>
